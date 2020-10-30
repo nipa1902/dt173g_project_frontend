@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DT173G Frontend - Nils Paulsson, Webbutvecklare</title>
+</head>
+<body>
+
+<div class="container">
+
+        <nav id="mainnav">
+            <ul>
+                <li> <a class="educationlink" href="#education" title="Utbildning">Utbildning</a>  </li>
+                <li> <a class="worklink" href="#work" title="Arbeten">Arbeten</a>  </li>
+                <li> <a class="portfoliolink" href="#portfolio" title="Portfölj">Portfölj</a>  </li>
+            </ul>
+        </nav>
+
+        <button id="hamburger-toggle"></button>
+        <nav id="nav-hamburger">
+            <ul>
+                <li> <a class="hamburger-links educationlink" href="#education" title="Utbildning">Utbildning</a>  </li>
+                <li> <a class="hamburger-links worklink" href="#work" title="Arbeten">Arbeten</a>  </li>
+                <li> <a class="hamburger-links portfoliolink" href="#portfolio" title="Portfölj">Portfölj</a>  </li>
+            </ul>
+        </nav>
+    
+    <div id="heading">
+    <h1> Nils Paulsson - Webbutvecklare </h1>
+    </div>
+
+    <section id="aboutme">
+
+        <div class="left">
+        <figure id="headshot">
+            <img src="img/img_headshot.JPG" alt="Bild på Nils Paulsson" title="En bild på mig. Hej!">
+        </figure>
+        </div>
+
+        <div class="right">
+        <p>Hej! Jag heter Nils Paulsson och är en webbutvecklare bosatt i Göteborg. 
+            Jag har studerat webbutveckling (Full-stack) på Mittuniversitet i ca 2 år och börjar närma mig min examen.
+
+            Innan denna utbildning tog jag en kandidatexamen i Internationella Relationer och Statskunskap 
+            (fil.kand) vid Göteborgs Universitet.</p>
+        
+            <p>Det roligaste med webbutveckling är att skapa något som andra kan se, klicka på och använda. Känslan av att lösa ett problem i sin kod är som en bal på slottet -- alldeles underbart!
+            Som webbutvecklare har jag arbetat med: HTML, CSS, JS, Vue, Node.js, MongoDB, AJAX & Fetch, MySQL, PHP, WordPress, SASS, GULP.</p>
+        
+            <p>Denna webbtjänst är byggd som en del av projektarbetet i kurs DT173G. Front-enden konsumerar med hjälp av en API data från en MySQL-databas. Allt nedanför denna text renderas med hjälp av JavaScript och Fetch API.
+            </p>
+        
+        </div>
+
+    </section>
+
+    <!-- This section contains the clickable menu spans-->
+    <section id="displaymenu">
+        <div class="displaylist">
+            <span id="displayeducation" class="educationlink">Utbildning</span>
+            <span id="displaywork" class="worklink">Tidigare arbeten</span>
+            <span id="displayportfolio" class="portfoliolink active">Portfölj</span>
+        </div>
+    </section>
+
+    <!-- This section contains education output -->
+    <section id="education" class="hide-element output-div">
+        <h2>Utbildning</h2>
+
+        <div id="educationoutput"></div>
+
+    </section>
+
+    <!-- This section contains work output -->
+    <section id="work" class="hide-element output-div">
+        <h2>Tidigare arbeten</h2>
+
+        <div id="workoutput"></div>
+
+    </section>
+
+    <!-- This section contains portfolio output -->
+    <section id="portfolio" class="output-div">
+        <h2>Portfölj</h2>
+
+        <div id="websitesoutput"></div>
+    </section>
+    
+    <footer>
+        <p>Webbsida skapad av Nils Paulsson (nipa1902) för kurs DT173G, projekt. 
+        <br>
+        <a href="#mainnav" title="Tillbaka till start">Tillbaka till start</a></p>
+    </footer>
+    
+
+<!-- Arrow button to scroll to top -->
+<div id="home-wrapper">
+<a href="#mainnav" title="Tillbaka till start"> <i id="home-button" class="fa fa-arrow-up fa-5x"> </i></a>
+</div>
+
+
+
+</div>
+<script src="js/main.js">
+</script>
+
+<script>
+// Load the courses, jobs and websites via main.js
+readCourses();
+readJobs();
+readWebsites();
+
+</script>
+    
+    
+</body>
+</html>

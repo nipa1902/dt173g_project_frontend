@@ -1,0 +1,207 @@
+// Use me to place complete component stylings such as boxes, link styling, buttons, etc etc. 
+
+// No text decoration
+@mixin no-decoration {
+    text-decoration: none;
+}
+
+// HORIZONTAL FLEX LIST WITH NESTED LIST ITEMS
+@mixin horizontal-flex-list {
+
+    ul, ol {
+        display: flex;
+        flex-direction: row;
+
+        // Nested list items inside the ul
+        li {padding: $p-1;}
+
+        // Small breakpoint = horizontal orientation
+        @media #{$breakpoint-small} {
+                flex-direction: column;
+                text-align: $alignCenter;
+
+                li {
+                    padding: 0.5rem;
+                }
+        }
+
+
+    }
+    
+}
+
+// SAME THING BUT CENTER CONTENT
+@mixin horizontal-flex-list-center {
+    @include horizontal-flex-list;
+    ul, ol {
+        justify-content: $alignCenter;
+    }
+}
+
+@mixin hamburger-toggle-button {
+    position: absolute;
+    z-index: 9000;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    background-image: url("../img/hamburger_open.png");
+    background-size: cover;
+    right: 0;
+    padding: $p-1;
+}
+
+@mixin nav-hamburger {
+    ul {
+        padding-top: 3rem;
+        li {
+            padding: 3rem;
+            line-height: 1.25rem;
+
+            a {
+                
+            font-size: $h1;
+                &:hover {
+                color: $colorBright;
+                border-bottom: 4px solid $colorWhite;
+                padding-bottom: $p-1;
+                }
+            }
+        }
+    }
+}
+
+// Pretty little box to put images in
+@mixin imgbox {
+    border: 1px solid $colorDark;
+    box-shadow: 1px 1px $colorDark;
+
+    // Use transparent border/shadow to avoid element re-sizing
+    &:hover {
+        border: 1px solid transparent;
+        box-shadow: 1px 1px transparent;
+    }
+
+}
+
+
+@mixin sliding-navbar-start {
+    position: absolute;
+    transition: 0.25s ease;
+    top: -100vh;
+    width: 100vw;
+    height: 100vh;
+}
+
+@mixin sliding-navbar-end {
+    position: absolute;
+    top: 0vh;
+}
+
+// I create a radial gradient background, my two arguments are the two colours
+@mixin radial-gradient-background($from, $to) {
+        background: -moz-radial-gradient(center, circle cover, $from 0%, $to 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to));
+        background: -webkit-radial-gradient(center, circle cover, $from 0%, $to 100%);
+        background: -o-radial-gradient(center, circle cover, $from 0%, $to 100%);
+        background: -ms-radial-gradient(center, circle cover, $from 0%, $to 100%);
+        background: radial-gradient(center, circle cover, $from 0%, $to 100%);
+        background-color: $from;
+}
+
+// I am a section with some padding and min-height
+@mixin section {
+    min-height: 30vh;
+    padding: $p-1;
+}
+
+// I am the footer
+@mixin footer {
+    background: $colorDark;
+    color: $colorWhite;
+    text-align: $alignCenter;
+    padding-top: $p-1;
+
+    p {
+    max-width: $fullWidth !important;
+    }
+}
+
+// Margin on both top and bottom, used to space elements
+@mixin margin-both {
+    margin-top: $margin-1;
+    margin-bottom: $margin-1;
+}
+
+// Takes half of whatever the above margin is
+@mixin margin-both-half {
+    margin-top: calc(#{$margin-1} / 2);
+    margin-bottom: calc(#{$margin-1} / 2);
+}
+
+@mixin active {
+    background: $colorGreen !important;
+}
+
+// Adds a nice green border+shadow when you hover an element
+@mixin hover-green-shadow {
+    transition: 0.25s;
+    border: 1px solid $colorGreen;
+    box-shadow: 2px 2px 12px $colorGreen;
+}
+
+// A square box that is used to highlight portfolios. Include inside portfolio item div
+@mixin portfolio-item {
+
+    min-height: 40vh;
+    border: 2px solid black;
+
+    // This background is the link grabbed from DB
+    background-size: cover;
+
+    // Inner grid items ONLY in portfolio items: make visible with background & backdrop
+    .inner-grid-item {
+    background: $colorBrightBlue;
+    padding: 0.25rem;
+    }
+}
+
+// 
+@mixin grid-item {
+    display: grid;
+}
+
+@mixin home-button {
+    height: 6rem; 
+    width: 6rem;
+    border-radius: 50%;
+    border: 2px solid lighten($colorDark, 15%);
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: lighten($colorBlack, 15%);
+}
+
+// Elements that include this are not shown unless at small breakpoints
+@mixin hide-unless-small {
+    display: none;
+    @media #{$breakpoint-small} {
+        display: block;
+    }
+}
+
+// Elements that include this disappear at medium breakpoint
+@mixin hide-when-medium {
+    display: block;
+    @media #{$breakpoint-medium} {
+        display: none;
+    }
+}
+
+// Elements that include this disappear at small breakpoint
+@mixin hide-when-small {
+    display: block;
+    @media #{$breakpoint-small} {
+        display: none;
+    }
+}
+

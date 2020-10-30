@@ -1,0 +1,304 @@
+// Specific layout for the index page, for control of elements etc 
+body {
+    background: radial-gradient(#9dbcdb,#b1d0ee);
+    //@include radial-gradient-background(#9dbcdb, #b1d0ee);
+    // This code works, but does not validate CSS
+    
+}
+
+// Wraps around all content
+.container {
+    max-width: 1600px;
+    margin: $marginCenter;
+    font-family: $fontStack;
+
+    background: radial-gradient(#c2ddf8,#e1edfa);
+    //@include radial-gradient-background(#c2ddf8, #e1edfa);
+    // This code works, but does not validate CSS
+
+    // Default text imported from base
+    p {
+        @extend %text-default;
+    }
+}
+
+// Our heading
+#heading {
+    background: $colorBright;
+    font-size: $h1;
+    padding: $p-1;
+}
+
+// Picture of me
+figure#headshot {
+    img {
+        @include imgbox;
+    max-height: 600px; 
+    max-width: 450px;
+    }
+}
+
+// Nav will import the layout rules from horizontal flex
+nav {
+    background-color: $colorBlack;
+    @include horizontal-flex-list-center; 
+    a {
+        @include no-decoration;
+        color: $colorWhite;
+        font-size: $p;
+
+        // Using parent selector to set hover style
+        &:hover {
+            opacity: 0.9;
+        }
+    } 
+
+}
+
+#home-button {
+    @include home-button;
+    font-size: 550%;
+    text-align: center;
+
+    &:hover {
+        background: $colorWhite;
+    }
+}
+
+// Element around back-to-top button
+#home-wrapper {
+    a {
+    scroll-behavior: smooth;
+    color: #9dbcdb;
+    }
+}
+
+// Standard section that divides the page
+section {
+    @include section;
+    display: grid;
+
+    h2 {
+            text-align: $alignCenter;
+            font-size: $h2;
+            border-bottom: 1px solid $colorBlack;
+            padding: $p-1;
+            max-width: 20rem;
+            margin: 0 auto;
+    }
+}
+
+// Specific section
+#aboutme {
+    grid-template-areas: "0.25fr 1fr";
+}
+
+section#displaymenu {
+    min-height: auto;
+}
+.displaylist {
+    display: grid;
+    grid-template-areas: "1fr 1fr 1fr";
+
+    span {
+        cursor: pointer;
+        width: 100%;
+        padding: $p-1;
+        font-size: $h2;
+        text-align: $alignCenter;
+        background: $colorWhite;
+        border: 1px solid $colorBlack;
+
+        &:hover {
+            @include hover-green-shadow;
+        }
+    }
+}
+
+.active {
+    @include active;
+}
+
+// Sections that read DB data
+#educationoutput, #workoutput, #websitesoutput {
+    display: grid;
+    
+    justify-content: $alignCenter;
+
+    .grid-item {
+        padding: $p-1;
+        border: 1px solid $colorBrightBlue;
+        border-left: 12px solid $colorBrightBlue;
+
+        .inner-grid-item {
+            padding: 0.25rem;
+            display: block;
+
+            h3 {
+                font-size: $h3;
+                padding: 0.5rem;
+                text-align: $alignCenter;
+            }
+            h3, p {
+                font-weight: $fontBold;
+            }
+        }
+
+    }
+
+    // Only used in website output div
+    .wrapper {
+        max-width: 900px;
+
+        // Since the link-element wraps around the entire text, we have to style it
+        a {
+            @include no-decoration;
+            color: $colorBlack;
+        }
+
+    }
+
+    // This class refers to the portfolio images -- they are both grid item and portfolio item classes
+    .portfolio-item {
+        @include portfolio-item;
+        @include margin-both;
+        display: block;
+        border: 3px solid $colorBright; 
+        opacity: 0.95;
+
+        &:hover {
+            border: 3px solid $colorBlack;
+            opacity: 1;
+        }
+
+    }
+}
+
+
+
+// Only previous jobs & work sections
+#educationoutput, #workoutput {
+
+    // Pad between the sections headings and the output div
+    padding: calc(#{$p-1} * 3);
+
+    // Small difference in background color to make it easier to distinguish grid items
+    .grid-item:nth-child(odd) {
+        background: darken($colorWhitesmoke, 5%);
+    }
+
+    .grid-item {
+        margin: 0.25rem;
+
+        box-shadow: 2px 2px 12px $colorBright;
+        background: $colorWhitesmoke;
+
+        width: 33vw;
+        max-width: 800px;
+
+        // Use standard paragraph styling for the post entries
+        @extend %text-default;
+
+        // Hover settings for max legibility
+        &:hover {
+            background: $colorWhite;
+            @include hover-green-shadow;
+            border-left: 12px solid $colorGreen;
+            transition: 0.25s ease-in;
+        }
+    }
+
+
+
+
+
+}
+
+footer {
+    @include footer;
+
+    a {
+        color: $colorWhite;
+    }
+}
+
+.hide-element {
+    display: none;
+}
+.display-block {
+    display: block;
+}
+
+#nav-hamburger, #hamburger-toggle {
+    @include hide-unless-small;
+}
+
+#mainnav {
+    @include hide-when-small;
+}
+
+#home-wrapper {
+    @include hide-when-medium;
+}
+
+@media #{$breakpoint-medium} {
+    section#aboutme {
+        grid-template-areas: "1fr";
+
+        figure#headshot {
+
+            padding-left: $p-1;
+
+            img {
+                max-width: 100%;
+                max-height: 25rem;
+            }
+        }
+    }
+
+    #educationoutput, #workoutput {
+        padding: $p-1;
+
+        .grid-item {
+            min-width: 80vw;
+        }
+    }
+
+    #websiteoutput {
+        .portfolio-item {
+        min-height: 20vh;
+        }
+    }
+
+    .displaylist {
+        grid-template-areas: "1fr";
+
+        span {
+            @include margin-both-half;
+        }
+    }
+
+}
+
+
+@media #{$breakpoint-small} {
+
+    #heading {
+        text-align: $alignCenter;
+    }
+        #hamburger-toggle {
+            @include hamburger-toggle-button;
+    }   .closeNav {
+            background-image: url("../img/hamburger_close.png") !important;
+    }
+
+    #nav-hamburger {
+        @include sliding-navbar-start;
+        @include nav-hamburger;
+    } 
+    #nav-hamburger.showNav {
+        @include sliding-navbar-end;
+    }
+
+
+}
